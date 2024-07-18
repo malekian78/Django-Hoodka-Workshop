@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hodka",
+    # Modules
+    'django_jalali',
 ]
 
 MIDDLEWARE = [
