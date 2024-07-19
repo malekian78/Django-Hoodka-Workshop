@@ -3619,10 +3619,10 @@
   content: "\e313";
 }
 .icon-keyboard_arrow_left:before {
-  content: "\e314";
+  content: "<";
 }
 .icon-keyboard_arrow_right:before {
-  content: "\e315";
+  content: ">";
 }
 .icon-keyboard_arrow_up:before {
   content: "\e316";

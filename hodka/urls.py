@@ -5,5 +5,4 @@ app_name = 'hodka'
 
 urlpatterns = [
     path('', HomePage, name='home'),
-    path("#contact-section", HomePage, name="contact")
 ]

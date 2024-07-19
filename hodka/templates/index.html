@@ -402,10 +402,88 @@
       font-size: 16px;
       padding-left: 60px;
     }
+    .toast {
+      min-width: 250px;
+      margin-left: -125px;
+      color: #fff;
+      text-align: right;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 120;
+      right: 40px;
+      top: 20px;
+      font-size: 17px;
+      -webkit-animation:fadeout 2s forwards;
+      animation: fadeOut 2s forwards;
+      animation-delay: 2s;
+    }
+
+    @-webkit-keyframes fadein {
+        from {top: 0; opacity: 0;} 
+        to {top: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+        from {top: 0; opacity: 0;}
+        to {top: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+        from {top: 30px; opacity: 1;} 
+        to {top: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
+    }
   </style>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  {% comment %} <div class="toast" style="background-color: green;">
+    اطلاعات شما با موفقیت دریافت شده      
+  </div> {% endcomment %}
+  {% if messages %}
+    {% for message in messages %}
+      {% comment %} <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">
+        {{ message|safe }}
+      </div> {% endcomment %}
+      {% if message.tags == 'success' %}
+        <div class="toast" style="background-color: green;">
+          {{ message|safe }}    {{message.ERROR | safe}}   
+        </div>
+      {% else %}
+        <div class="toast" style="background-color: red;">
+          {{ message|safe }}      
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if form.errors %}
+    <div class="toast" style="background-color: red;">
+      متأسفانه اطلاعات دریافت نشد
+    </div>
+    {% comment %} <div class="alert alert-error">
+      <h4>Please fix the following errors</h4>
+      <ul>
+        {% for field in form %}
+        {% if field.errors %}
+          {% for error in field.errors %}
+          <li><a href="#id_{{ field.name }}" class="error">
+            {{ error|escape }}
+          </a></li>
+          {% endfor %}
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+      {% endif %}
+    </div> {% endcomment %}
+  {% endif %}
+
   <div class="site-wrap" id="home-section">
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
@@ -419,7 +497,14 @@
       <div class="container">
         <div class="row align-items-center position-relative">
           <div class="site-logo">
-            <a href="index.html" class="text-black"><span class="text-primary">هودکا</a>
+            <a href="" class="text-black">
+              <span class="text-primary">HODKA</a>
+                {% comment %} {% if exdata %}
+                  <img src="{{exdata.logo.url}}" style="height: 80px; width: 110px;">
+                  <span class="text-primary">HODKA</a>
+                {% else %}
+                  <span class="text-primary">HODKA</a>
+                {% endif %} {% endcomment %}
           </div>
           <div class="col-12">
             <nav class="site-navigation text-center " role="navigation">
@@ -746,7 +831,7 @@
         </div>
         <div class="row" style="direction: rtl;">
           <div class="col-lg-6 mb-5">
-            <form action="{% url 'hodka:contact' %}" method="post">
+            <form action="{% url 'hodka:home' %}" method="post">
               {% csrf_token %}
               <div class="form-group row">
                 <div class="col-md-12">
@@ -777,27 +862,8 @@
                 </div>
               {% endfor %}
             {% endif %}
-            {% if form.errors %}
-              <div class="alert alert-error">
-                <h4>Please fix the following errors</h4>
-                <ul>
-                  {% for field in form %}
-                  {% if field.errors %}
-                    {% for error in field.errors %}
-                    <li><a href="#id_{{ field.name }}" class="error">
-                      {{ error|escape }}
-                    </a></li>
-                    {% endfor %}
-                  {% endif %}
-                  {% endfor %}
-                </ul>
-                {% if form.non_field_errors %}
-                  {{ form.non_field_errors }}
-                {% endif %}
-              </div>
-            {% endif %}
           </div>
-          <div class="col-lg-4 ml-auto">
+          <div class="col-lg-4 ml-auto" style="min-width: 45%;">
             <h2 class="text-black" style="text-align: right;">درصورت نیاز به سفارش سریع تر می توانید با شماره تلفن 
               <a href="">32224158-031</a>
             تماس بگیرید
@@ -914,7 +980,6 @@
       </div>
     </div>
   </div> {% endcomment %}
-
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-ui.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
