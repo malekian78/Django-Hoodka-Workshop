@@ -65,16 +65,26 @@ jQuery(document).ready(function($) {
 		})
 
 		$('body').on('click', '.js-menu-toggle', function(e) {
-			var $this = $(this);
+			var $this = $(this),
+				w = $(window).width();
 			e.preventDefault();
-
-			if ( $('body').hasClass('offcanvas-menu') ) {
-				$('body').removeClass('offcanvas-menu');
-				$this.removeClass('active');
-			} else {
-				$('body').addClass('offcanvas-menu');
-				$this.addClass('active');
+			// console.log("w=",w)
+			if(w < 768){
+				if ( $('body').hasClass('offcanvas-menu') ) {
+					$('body').removeClass('offcanvas-menu');
+					$this.removeClass('active');
+				} else {
+					$('body').addClass('offcanvas-menu');
+					$this.addClass('active');
+				}
+			}else{
+				if ( $('body').hasClass('offcanvas-menu') ) {
+					$this.removeClass('active');
+				} else {
+					$this.addClass('active');
+				}
 			}
+			
 		}) 
 
 		// click outisde offcanvas

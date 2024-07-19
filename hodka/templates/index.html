@@ -554,8 +554,8 @@
           {% comment %} <div class="col-6 col-lg-3 block__73422" style="background-image: url('{% static 'images/hero_1.jpg' %}');">
           </div> {% endcomment %}
           <div class="col-lg-6 p-lg-5 mt-4 mt-lg-0">
-            <h2 class="mb-3 text-black">درباره ما</h2>
-            <p class="lead">{{exdata.aboutUsContent}}</p>
+            <h2 class="mb-3 text-black" style="direction: rtl; text-align: right;">درباره ما</h2>
+            <p class="lead" style="direction: rtl; text-align: right;">{{exdata.aboutUsContent}}</p>
             {% comment %} <div class="row mt-3">
               <div class="col-lg-6">
                 <ul class="ul-check primary list-unstyled">
@@ -641,7 +641,7 @@
         <div class="row mb-5">
           <div class="col-12">
             <div class="block-heading-1">
-              <h2>مدیران ما</h2>
+              <h2 style="direction: rtl; text-align: right;">مدیران ما</h2>
             </div>
           </div>
         </div>
@@ -848,6 +848,11 @@
                 </div>
               </div>
               <div class="form-group row">
+                <div class="col-md-12">
+                  {{form.captcha}}
+                </div>
+              </div>
+              <div class="form-group row">
                 <div class="col-md-6 ml-auto">
                   <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="ارسال پیغام">
                 </div>
@@ -861,8 +866,8 @@
               {% endfor %}
             {% endif %}
           </div>
-          <div class="col-lg-4 ml-auto" style="min-width: 45%;">
-            <h2 class="text-black" style="text-align: right;">درصورت نیاز به سفارش سریع تر می توانید با شماره تلفن 
+          <div class="col-lg-4 ml-auto" style="min-width: 49%;">
+            <h2 class="text-black" style="text-align: right; font-size: 30px;">درصورت نیاز به سفارش سریع تر می توانید با شماره تلفن 
               <a href="">32224158-031</a>
             تماس بگیرید
             </h2>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_jalali',
     
     "hodka",
+    "captcha",
     
     'django_cleanup.apps.CleanupConfig',
 ]

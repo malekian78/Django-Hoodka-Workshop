@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from hodka.models import slider, extraData, CEO, Satisfaction, Product, contactUs
 from django.contrib import messages
+from captcha.fields import CaptchaField
 
 # Create your views here.
 def HomePage(request):
@@ -30,7 +31,7 @@ def HomePage(request):
 
 from django import forms
 class ContactForm2(forms.ModelForm):
-    # captcha = CaptchaField()
+    captcha = CaptchaField()
     class Meta:
         model = contactUs
         fields = ['name', 'email', 'message'] 
