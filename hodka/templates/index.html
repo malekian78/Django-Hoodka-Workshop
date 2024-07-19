@@ -6,6 +6,10 @@
   <title>Hodka</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% if exdata %}
+    <link rel="icon" href="{{exdata.logo.url}}" type="image/icon type">
+  {% endif %}
+  
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -33,7 +37,7 @@
       left: 0;
       font-size: 20px;
       top: -.3rem;
-      font-family: "icomoon";
+      font-family: "BNazanin";
       content: "\e5ca";
       position: absolute;
     }
@@ -80,6 +84,7 @@
       margin: 0;
       padding: 0;
       z-index: 3;
+      right: -13px;
     }
 
     @media (max-width: 991.98px) {
@@ -140,7 +145,7 @@
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
-      font-family: 'icomoon';
+      font-family: 'BNazanin';
     }
 
     .site-navbar .site-navigation .site-menu .has-children .dropdown {
@@ -343,7 +348,7 @@
     .site-mobile-menu .site-nav-wrap .arrow-collapse:before {
       font-size: 12px;
       z-index: 20;
-      font-family: "icomoon";
+      font-family: "BNazanin";
       content: "\f078";
       position: absolute;
       top: 50%;
@@ -438,6 +443,17 @@
         from {top: 30px; opacity: 1;}
         to {top: 0; opacity: 0;}
     }
+
+    @font-face{
+      font-family: 'BNazanin';
+      src: url('{% static 'fonts\BNazanin.ttf' %}');
+    }
+
+    @font-face{
+      font-family: 'BTitr';
+      src: url('{% static 'fonts\BTitrBold.ttf' %}');
+  }
+
   </style>
 </head>
 
@@ -505,14 +521,14 @@
           </div>
           <div class="col-12">
             <nav class="site-navigation text-center " role="navigation">
-              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                <li><a href="#home-section" class="nav-link js-menu-toggle">خانه</a></li>
+              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block" style="direction: rtl;">
+                <li><a href="#home-section" style="font-family: 'BTitr';" class="nav-link js-menu-toggle">خانه</a></li>
                 {% comment %} <li><a href="#investors-section" class="nav-link js-menu-toggle">سرمایه گذاران</a></li> {% endcomment %}
-                <li><a href="#about-section" class="nav-link js-menu-toggle">درباره ما</a></li>
+                <li><a href="#about-section" style="font-family: 'BTitr';" class="nav-link js-menu-toggle">درباره ما</a></li>
                 {% comment %} <li><a href="#press-section" class="nav-link js-menu-toggle">اخبار</a></li> {% endcomment %}
-                <li><a href="#testimonials-section" class="nav-link js-menu-toggle">رضایت ها</a></li>
-                <li><a href="#blog-section" class="nav-link js-menu-toggle">محصولات</a></li>
-                <li><a href="#contact-section" class="nav-link js-menu-toggle">تماس با ما</a></li>
+                <li><a href="#testimonials-section" style="font-family: 'BTitr';" class="nav-link js-menu-toggle">رضایت ها</a></li>
+                <li><a href="#blog-section" style="font-family: 'BTitr';" class="nav-link js-menu-toggle">محصولات</a></li>
+                <li><a href="#contact-section" style="font-family: 'BTitr';" class="nav-link js-menu-toggle">تماس با ما</a></li>
               </ul>
             </nav>
           </div>
@@ -879,7 +895,18 @@
         </div>
       </div>
     </div>
+    <div style="background-color: #333333; text-align: center; margin-bottom: 0;">
+      <p style="margin-bottom: 0; font-family: 'BTitr';">
+        سایت ساخته شده توسط
+        آقای 
+        <a href="https://github.com/malekian78">محمد حسین ملکیان</a>
+        {% comment %} Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+        with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+          target="_blank">Colorlib</a> {% endcomment %}
 
+      </p>
+    </div>
     {% comment %} <footer class="site-footer">
       <div class="container">
         <div class="row">
