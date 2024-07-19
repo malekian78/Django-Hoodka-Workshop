@@ -5,30 +5,48 @@ from django_jalali.db import models as jmodels
 
 # صفحه اسلایدر اولی
 class slider(models.Model):
-    image = models.ImageField(help_text="تصویر", verbose_name="تصویر اسلایدرها", upload_to="sliders/")
-    title = models.CharField(help_text="موضوع",max_length=50)
-    content = models.CharField(help_text="متن",max_length=225)
-    active = models.BooleanField(help_text="نمایش داده شود؟",default=False)
+    image = models.ImageField(verbose_name="تصویر اسلایدرها", upload_to="sliders/")
+    title = models.CharField(verbose_name="موضوع",max_length=50)
+    content = models.TextField(verbose_name="متن",max_length=225)
+    active = models.BooleanField(verbose_name="نمایش داده شود؟",default=False)
 
 # مدرعامل
 class CEO(models.Model):
-    avatar = models.ImageField(help_text="تصویر شخص ", upload_to="ceo/")
-    name = models.CharField(help_text=" نام و نام خانوادگی", max_length=100)
-    role = models.CharField(help_text="نقش در کارگاه", max_length=100)
-    descriptions = models.CharField(help_text="توضیحات", max_length=225)
-    telegram = models.URLField(help_text="آیدی تلگرام",)
-    phone = models.DecimalField(help_text="شماره موبایل", max_digits=11, decimal_places=10)
+    avatar = models.ImageField(verbose_name="تصویر شخص ", upload_to="ceo/", default="defaults\male_user.png")
+    name = models.CharField(verbose_name=" نام و نام خانوادگی", max_length=100)
+    role = models.CharField(verbose_name="نقش در کارگاه", max_length=100)
+    descriptions = models.TextField(verbose_name="توضیحات", max_length=225)
+    # telegram = models.URLField(verbose_name="آیدی تلگرام",)
+    phone = models.CharField(verbose_name="شماره موبایل", max_length=11)
 
 # رضایت ها
 class Satisfaction(models.Model):
-    image = models.ImageField(help_text="تصویر", upload_to="media/defaults/male_user.png")
-    content = models.CharField(help_text="متن", max_length=225)
-    name = models.CharField(help_text="نام", max_length=50 , default="")
+    name = models.CharField(verbose_name="نام و نام خانوادگی", max_length=50 , help_text= "برای تجربه کاربری بهتر حداقل ۳ رکورد ایجاد کنید")
+    content = models.TextField(verbose_name="متن", max_length=225)
+    image = models.ImageField(verbose_name="تصویر", upload_to="satisfaction/", default="defaults/male_user.png")
 
 # تماس با ما
 class contactUs(models.Model):
-    name = models.CharField(help_text="نام و نام خانوادگی", max_length=50)
-    email = models.EmailField(help_text="ایمیل", max_length=100)
-    message = models.CharField(help_text="متن", max_length=225)
-    created_time = jmodels.jDateTimeField(help_text="تاریخ ایجاد", auto_now_add=True)
+    name = models.CharField(verbose_name="نام و نام خانوادگی", max_length=50)
+    email = models.EmailField(verbose_name="ایمیل", max_length=100)
+    message = models.CharField(verbose_name="متن", max_length=225)
+    created_time = jmodels.jDateTimeField(verbose_name="تاریخ ایجاد", auto_now_add=True)
 
+class extraData(models.Model):
+    active = models.BooleanField(verbose_name="نمایش داده شود؟")
+    YearofExperience = models.PositiveIntegerField(verbose_name="چند سال تجربه؟")
+    NumberofEngineers = models.PositiveIntegerField(verbose_name="تعداد کارمندها")
+    Numberofsells = models.PositiveIntegerField(verbose_name="تعداد محصولات فروش رفته")
+    NumberofProduct = models.PositiveIntegerField(verbose_name="میزان تولید در روز")
+    backGroundImage1 = models.ImageField(verbose_name="تصویر بک گراند۱", upload_to="extraData/")
+    backGroundImage2 = models.ImageField(verbose_name="تصویر بک گراند۲", upload_to="extraData/")
+    aboutUsContent = models.TextField(verbose_name="متن درباره ما", default='SOME STRING')
+    logo = models.ImageField(verbose_name="لوگو", upload_to="logo/")
+
+class Product(models.Model):
+    title = models.CharField(verbose_name="نام محصول" ,max_length=100)
+    image = models.ImageField(verbose_name="تصویر محصول", upload_to="products/")
+    snipetContent = models.TextField(verbose_name="توضیحات محصول")
+    # createdTime = jmodels.jDateField(verbose_name="سال ساخت (اختیاری)", null=True, blank=True)
+    active = models.BooleanField(verbose_name="نمایش داده شود؟")
+    

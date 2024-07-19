@@ -415,7 +415,7 @@
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
-    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+    <header class="site-navbar js-sticky-header site-navbar-target" style="direction: rtl;" role="banner">
       <div class="container">
         <div class="row align-items-center position-relative">
           <div class="site-logo">
@@ -425,67 +425,55 @@
             <nav class="site-navigation text-center " role="navigation">
               <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li><a href="#home-section" class="nav-link">خانه</a></li>
-                <li><a href="#investors-section" class="nav-link">سرمایه گذاران</a></li>
+                {% comment %} <li><a href="#investors-section" class="nav-link">سرمایه گذاران</a></li> {% endcomment %}
                 <li><a href="#about-section" class="nav-link">درباره ما</a></li>
-                <li><a href="#press-section" class="nav-link">اخبار</a></li>
+                {% comment %} <li><a href="#press-section" class="nav-link">اخبار</a></li> {% endcomment %}
                 <li><a href="#testimonials-section" class="nav-link">رضایت ها</a></li>
-                <li><a href="#blog-section" class="nav-link">بلاگ</a></li>
+                <li><a href="#blog-section" class="nav-link">محصولات</a></li>
                 <li><a href="#contact-section" class="nav-link">تماس با ما</a></li>
               </ul>
             </nav>
           </div>
-          <div class="toggle-button align-items-center d-flex">
+          {% comment %} ! کلید نقل قول {% endcomment %}
+          {% comment %} <div class="toggle-button align-items-center d-flex">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">نقل قول</a>
             <a href="#" class="site-menu-toggle p-5 js-menu-toggle text-black d-inline-block d-lg-none d-flex"><span
                 class="icon-menu h3 m-0"></span></a>
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </header>
+    {% comment %} !SLIDER {% endcomment %}
     <div class="owl-carousel slide-one-item">
+      {% for slide in sliders %}
       <div class="site-section-cover overlay img-bg-section"
-        style="background-image: url('{% static 'images/hero_1.jpg' %}'); ">
+        style="background-image: url('{{slide.image.url}}'); ">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-12 col-lg-7">
-              <h1>بهترین کارگاه گیاهان دارویی</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel minima quasi quisquam, alias doloremque
-                magni.</p>
-              <p><a href="#" class="btn btn-outline-primary border-w-2 btn-md">Get in touch</a></p>
+              <h1>{{slide.title }}</h1>
+              <p>{{ slide.content }}</p>
+              {% comment %} <p><a href="#" class="btn btn-outline-primary border-w-2 btn-md">Get in touch</a></p> {% endcomment %}
             </div>
           </div>
         </div>
       </div>
-      <div class="site-section-cover overlay img-bg-section"
-        style="background-image: url('{% static 'images/hero_2.jpg' %}'); ">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 col-lg-7">
-              <h1>Best Miners In The World</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel minima quasi quisquam, alias doloremque
-                magni.</p>
-              <p><a href="#" class="btn btn-outline-primary border-w-2 btn-md">Get in touch</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-    <div class="site-section block__73694" id="investors-section">
+  
+    {% if exdata %} 
+    {% comment %} ! درباره ما {% endcomment %}
+    <div class="site-section block__73694" id="about-section">
       <div class="container-fluid">
         <div class="row d-flex no-gutters align-items-stretch">
-          <div class="col-6 col-lg-3 block__73422" style="background-image: url('{% static 'images/hero_2.jpg' %}');">
+          <div class="col-9 col-lg-6 block__73422" style="background-image: url('{{exdata.backGroundImage1.url}}');">
           </div>
-          <div class="col-6 col-lg-3 block__73422" style="background-image: url('{% static 'images/hero_1.jpg' %}');">
-          </div>
+          {% comment %} <div class="col-6 col-lg-3 block__73422" style="background-image: url('{% static 'images/hero_1.jpg' %}');">
+          </div> {% endcomment %}
           <div class="col-lg-6 p-lg-5 mt-4 mt-lg-0">
-            <h2 class="mb-3 text-black">Our Investors</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus id dignissimos nemo minus
-              perspiciatis ullam itaque voluptas iure vero, nesciunt unde odit aspernatur distinctio, maiores facere
-              officiis. Cum, esse, iusto?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus id dignissimos nemo minus perspiciatis
-              ullam itaque voluptas iure vero, nesciunt unde odit aspernatur distinctio, maiores facere officiis. Cum,
-              esse, iusto?</p>
-            <div class="row mt-3">
+            <h2 class="mb-3 text-black">درباره ما</h2>
+            <p class="lead">{{exdata.aboutUsContent}}</p>
+            {% comment %} <div class="row mt-3">
               <div class="col-lg-6">
                 <ul class="ul-check primary list-unstyled">
                   <li>Lorem ipsum dolor.</li>
@@ -502,48 +490,58 @@
                   <li>Cumque perspiciatis, blanditiis?</li>
                 </ul>
               </div>
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
       </div>
     </div>
+    
+    {% comment %} !Numbers {% endcomment %}
     <div class="site-section bg-primary" id="about-section">
       <div class="container">
         <div class="row justify-content-center mb-4 block-img-video-1-wrap">
           <div class="col-md-12 mb-5">
-            <figure class="block-img-video-1" data-aos="fade">
+            {% comment %} ? اگر در آینده خواستی که فیلم بزاری {% endcomment %}
+            {% comment %} <figure class="block-img-video-1" data-aos="fade">
               <a href="https://vimeo.com/45830194" class="popup-vimeo">
                 <span class="icon"><span class="icon-play"></span></span>
                 <img src="{% static 'images/hero_1.jpg' %}" alt="Image" class="img-fluid">
               </a>
+            </figure> {% endcomment %}
+            {% comment %} !تصویر بک گراند دومی {% endcomment %}
+            <figure class="block-img-video-1" data-aos="fade">
+              <div  class="popup-vimeo">
+                <img src="{{exdata.backGroundImage2.url}}" alt="Image" class="img-fluid">
+              </div>
             </figure>
           </div>
         </div>
+        {% comment %} ! داده های آماری {% endcomment %}
         <div class="row">
           <div class="col-12">
             <div class="row">
               <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
                 <div class="block-counter-1">
-                  <span class="number"><span data-number="15">0</span></span>
-                  <span class="caption">Year of Experience</span>
+                  <span class="number"><span data-number="{{exdata.YearofExperience}}">0</span></span>
+                  <span class="caption">سال تجربه</span>
                 </div>
               </div>
               <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
                 <div class="block-counter-1">
-                  <span class="number"><span data-number="392">0</span></span>
-                  <span class="caption">Number of Engineers</span>
+                  <span class="number"><span data-number="{{exdata.NumberofEngineers}}">0</span></span>
+                  <span class="caption">افراد مشغول به کار</span>
                 </div>
               </div>
               <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
                 <div class="block-counter-1">
-                  <span class="number"><span data-number="39332">0</span></span>
-                  <span class="caption">Number of Employees</span>
+                  <span class="number"><span data-number="{{exdata.Numberofsells}}">0</span></span>
+                  <span class="caption">محصولات فروش رفته</span>
                 </div>
               </div>
               <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
                 <div class="block-counter-1">
-                  <span class="number"><span data-number="53500">0</span></span>
-                  <span class="caption">Number of Golds</span>
+                  <span class="number"><span data-number="{{exdata.NumberofProduct}}">0</span></span>
+                  <span class="caption">میزان تولید در روز</span>
                 </div>
               </div>
             </div>
@@ -551,36 +549,43 @@
         </div>
       </div>
     </div>
+    {% endif %}
+
+    {% comment %} ! مدیران کارگاه {% endcomment %}
+    {% if ceo %}
     <div class="site-section" id="team-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12">
             <div class="block-heading-1">
-              <h2>Our Leadership</h2>
+              <h2>مدیران ما</h2>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up">
-            <div class="block-team-member-1 text-center rounded">
-              <figure>
-                <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid rounded-circle">
-              </figure>
-              <h3 class="font-size-20 text-black">Jean Smith</h3>
-              <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">Mining Expert</span>
-              <p class="px-3 mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, repellat. At,
-                soluta. Repellendus vero, consequuntur!</p>
-              <div class="block-social-1">
-                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                    class="icon-facebook"></span></a>
-                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                    class="icon-twitter"></span></a>
-                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
-                    class="icon-instagram"></span></a>
+        <div class="row" style="justify-content: center;">
+          {% for item in ceo %}
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 mt-4" data-aos="fade-up">
+              <div class="block-team-member-1 text-center rounded">
+                <figure>
+                  <img src="{{item.avatar.url}}" alt="Image" class="img-fluid rounded-circle">
+                </figure>
+                <h3 class="font-size-20 text-black">{{item.name}}</h3>
+                <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">
+                  {{item.role}}
+                </span>
+                <p class="px-3 mb-3">{{item.descriptions}}</p>
+                {% comment %} <div class="block-social-1">
+                  <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
+                      class="icon-facebook"></span></a>
+                  <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
+                      class="icon-twitter"></span></a>
+                  <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span
+                      class="icon-instagram"></span></a>
+                </div> {% endcomment %}
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+          {% endfor %}
+          {% comment %} <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
             <div class="block-team-member-1 text-center rounded">
               <figure>
                 <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid rounded-circle">
@@ -617,11 +622,14 @@
                     class="icon-instagram"></span></a>
               </div>
             </div>
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>
-    <div class="site-section" id="press-section">
+    {% endif %}
+
+    {% comment %} ! اخبار {% endcomment %}
+    {% comment %} <div class="site-section" id="press-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mb-5 mb-lg-0">
@@ -654,159 +662,156 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
+
+    {% comment %} ! نظر مشتریان {% endcomment %}
+    {% if statisfaction %}
     <div class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
       <div class="container">
         <div class="text-center mb-5">
           <div class="block-heading-1">
-            <span>Happy Client Says</span>
-            <h2>Testimonial</h2>
+            <span>نظر مشریان</span>
+            <h2>رضایت ها</h2>
           </div>
         </div>
         <div class="owl-carousel nonloop-block-13">
+          {% for item in statisfaction %}
           <div>
             <div class="block-testimony-1 text-center">
-              <blockquote class="mb-4">
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, fugit excepturi sapiente
-                  voluptatum nulla odio quaerat quibusdam tempore similique doloremque veritatis et cupiditate, maiores
-                  cumque repudiandae explicabo tempora deserunt consequuntur?&rdquo;</p>
+              <blockquote class="mb-4" style="min-height: 289px;">
+                <p>{{item.content}}</p>
               </blockquote>
               <figure>
-                <img src="{% static 'images/person_4.jpg' %}" alt="Image" class="img-fluid rounded-circle mx-auto">
+                <img src="{{item.image.url}}" alt="Image" class="img-fluid rounded-circle mx-auto">
               </figure>
-              <h3 class="font-size-20 text-black">Ricky Fisher</h3>
+              <h3 class="font-size-20 text-black">{{item.name}}</h3>
             </div>
           </div>
-          <div>
-            <div class="block-testimony-1 text-center">
-              <blockquote class="mb-4">
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, fugit excepturi sapiente
-                  voluptatum nulla odio quaerat quibusdam tempore similique doloremque veritatis et cupiditate, maiores
-                  cumque repudiandae explicabo tempora deserunt consequuntur?&rdquo;</p>
-              </blockquote>
-              <figure>
-                <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid rounded-circle mx-auto">
-              </figure>
-              <h3 class="font-size-20 text-black">Ken Davis</h3>
-            </div>
-          </div>
-          <div>
-            <div class="block-testimony-1 text-center">
-              <blockquote class="mb-4">
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, fugit excepturi sapiente
-                  voluptatum nulla odio quaerat quibusdam tempore similique doloremque veritatis et cupiditate, maiores
-                  cumque repudiandae explicabo tempora deserunt consequuntur?&rdquo;</p>
-              </blockquote>
-              <figure>
-                <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid rounded-circle mx-auto">
-              </figure>
-              <h3 class="font-size-20 text-black">Mellisa Griffin</h3>
-            </div>
-          </div>
-          <div>
-            <div class="block-testimony-1 text-center">
-              <blockquote class="mb-4">
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, fugit excepturi sapiente
-                  voluptatum nulla odio quaerat quibusdam tempore similique doloremque veritatis et cupiditate, maiores
-                  cumque repudiandae explicabo tempora deserunt consequuntur?&rdquo;</p>
-              </blockquote>
-              <figure>
-                <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid rounded-circle mx-auto">
-              </figure>
-              <h3 class="font-size-20 text-black">Robert Steward</h3>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
+    {% endif %}
+
+    {% comment %} ! وبلاگ {% endcomment %}
+    {% if product %}
     <div class="site-section" id="blog-section">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center mb-5">
             <div class="block-heading-1">
-              <span>Latest Blog Posts</span>
-              <h2>Our Blog</h2>
+              <span>آخرین محصولات</span>
+              <h2>محصولات ما</h2>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="justify-content: center;">
+          {% for item in product %}
           <div class="col-lg-6">
             <div>
-              <a href="single.html" class="mb-4 d-block"><img src="{% static 'images/hero_2.jpg' %}" alt="Image"
-                  class="img-fluid rounded"></a>
-              <h2><a href="single.html">How to Invest In Mining Industry</a></h2>
-              <p class="text-muted mb-3 text-uppercase small"><span class="mr-2">January 18, 2019</span> By <a
-                  href="single.html" class="by">James Cooper</a></p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat et suscipit iste libero neque. Vitae
-                quidem ducimus voluptatibus nemo cum odio ab enim nisi, itaque, libero fuga veritatis culpa quis!</p>
-              <p><a href="single.html">Read More</a></p>
+              <a href="" class="mb-4 d-block">
+                <img src="{{item.image.url}}" alt="Image"
+                  class="img-fluid rounded" 
+                  style="width: 100%; height: 500px; object-fit: cover;">
+                </a>
+              <h2 dir="rtl" style="text-align: right;"><a href="">{{item.title}}</a></h2>
+              <p style="text-align: right;" class="text-muted mb-3 text-uppercase small">
+              {% comment %} سال ساخت {% endcomment %}
+              {% comment %} {% if item.createdTime %}
+              <span class="mr-2">
+                {{item.createdTime}}
+              </span>
+              {% endif %} {% endcomment %}
+                {% comment %} By <a
+                  href="single.html" class="by">James Cooper</a></p> {% endcomment %}
+              <p style="text-align: right;" dir="rtl">{{item.snipetContent}}</p>
+              {% comment %} <p><a href="single.html">Read More</a></p> {% endcomment %}
             </div>
           </div>
-          <div class="col-lg-6">
-            <div>
-              <a href="single.html" class="mb-4 d-block"><img src="{% static 'images/hero_3.jpg' %}" alt="Image"
-                  class="img-fluid rounded"></a>
-              <h2><a href="single.html">How to Invest In Mining Industry</a></h2>
-              <p class="text-muted mb-3 text-uppercase small"><span class="mr-2">January 18, 2019</span> By <a
-                  href="single.html" class="by">James Cooper</a></p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat et suscipit iste libero neque. Vitae
-                quidem ducimus voluptatibus nemo cum odio ab enim nisi, itaque, libero fuga veritatis culpa quis!</p>
-              <p><a href="single.html">Read More</a></p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
+    {% endif %}
+
     <div class="site-section bg-light" id="contact-section">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center mb-5">
             <div class="block-heading-1">
-              <span>Get In Touch</span>
-              <h2>Contact Us</h2>
+              <span>با ما در تماس باشید</span>
+              <h2>ارتباط با ما</h2>
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="direction: rtl;">
           <div class="col-lg-6 mb-5">
-            <form action="#" method="post">
+            <form action="{% url 'hodka:contact' %}" method="post">
+              {% csrf_token %}
               <div class="form-group row">
-                <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="First name">
+                <div class="col-md-12">
+                  <input name="name" type="text" style="direction: rtl;" class="form-control" placeholder="نام و نام خانوادگی">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email address">
+                  <input name="email" type="text" style="direction: rtl;" class="form-control" placeholder="ایمیل">
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea name id class="form-control" placeholder="Write your message." cols="30"
+                  <textarea name="message" style="direction: rtl;" class="form-control" placeholder="پیغام شما ..." cols="30"
                     rows="10"></textarea>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-6 ml-auto">
-                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message">
+                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="ارسال پیغام">
                 </div>
               </div>
             </form>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">
+                  {{ message|safe }}
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if form.errors %}
+              <div class="alert alert-error">
+                <h4>Please fix the following errors</h4>
+                <ul>
+                  {% for field in form %}
+                  {% if field.errors %}
+                    {% for error in field.errors %}
+                    <li><a href="#id_{{ field.name }}" class="error">
+                      {{ error|escape }}
+                    </a></li>
+                    {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+                {% if form.non_field_errors %}
+                  {{ form.non_field_errors }}
+                {% endif %}
+              </div>
+            {% endif %}
           </div>
           <div class="col-lg-4 ml-auto">
-            <h2 class="text-black">Need to know more on details? Call Us <a href="tel://13923929482">+1 392 3929 482</a>
+            <h2 class="text-black" style="text-align: right;">درصورت نیاز به سفارش سریع تر می توانید با شماره تلفن 
+              <a href="">32224158-031</a>
+            تماس بگیرید
             </h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, distinctio! Harum quibusdam nisi,
-              illum nulla aspernatur <a href="#">voluptas nam praesentium</a> aut quidem aperiam, quae non tempora
-              recusandae voluptatibus fugit impedit.</p>
+            <p style="direction: rtl; text-align: right;"> انواع سفارشات مانند
+              <a href="#">نعناع، پونه، جعفری</a> 
+              را می توانید سفارش دهید
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <footer class="site-footer">
+
+    {% comment %} <footer class="site-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
@@ -864,10 +869,11 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> {% endcomment %}
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  {% comment %} ! صفحه مربوط به کلید نقل قول  {% endcomment %}
+  {% comment %} <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
@@ -907,7 +913,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
+
   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-ui.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>

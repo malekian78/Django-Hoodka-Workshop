@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import slider, CEO, Satisfaction, contactUs
+from .models import slider, CEO, Satisfaction, contactUs, extraData, Product
 
 
 @admin.register(slider)
@@ -33,3 +33,18 @@ class contactUsAdmin(admin.ModelAdmin):
     list_filter = ("name", "created_time", )
     search_fields = ("name", "message",)
     ordering = ("name", )
+
+@admin.register(extraData)
+class extraDataAdmin(admin.ModelAdmin):
+    list_display = ("id", "active", "YearofExperience", "NumberofEngineers", "aboutUsContent")
+    list_display_links = ("id", "active", "YearofExperience", "NumberofEngineers", "aboutUsContent")
+    list_filter = ("active", )
+    search_fields = ("aboutUsContent", )
+    ordering = ("active", )
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("id", "title", "snipetContent", )
+    list_display_links = ("id", "title", "snipetContent", )
+    list_filter = ("title", )
+    search_fields = ("title", "snipetContent")
