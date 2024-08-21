@@ -7,7 +7,7 @@
 
 # Demo
 <p align="center">
-<img src="./HoodkaDemo/Home.PNG" width="100%">
+<img src="./HoodkaDemo/Home.jpg" width="100%">
 </p>
 
 
