@@ -20,8 +20,6 @@ create virtualenv and activate
 
 Then run ```pip install -r requirements.txt``` to install dependencies.
 
-cp `.env-sample` to `.env`
-
 ```bash
 py manage.py makemigrations
 py manage.py migrate
