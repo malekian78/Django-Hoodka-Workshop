@@ -10,6 +10,8 @@
 <img src="./HoodkaDemo/Home.jpg" width="100%">
 </p>
 
+for more Demo check the ```HoodkaDemo``` folder.
+
 
 # How to use
 You must have [Python](http://python.org/) installed.
