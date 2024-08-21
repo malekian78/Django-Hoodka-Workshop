@@ -6,6 +6,4 @@ db.sqlite3
 venv/
 
 # media files
-/media
-./media
 media
