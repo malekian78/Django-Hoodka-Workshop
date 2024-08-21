@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Modules
     'django_jalali',
     
+    # Apps
     "hodka",
     "captcha",
     
