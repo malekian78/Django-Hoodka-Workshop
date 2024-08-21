@@ -514,7 +514,7 @@
         <div class="row align-items-center position-relative">
           <div class="site-logo">
                 {% if exdata %}
-                  <img src="{{exdata.logo.url}}" style="height: 80px; width: 110px;">
+                  <img src="{{exdata.logo.url}}" style="height: 60px; width: 90px;">
                 {% else %}
                   <span class="text-primary">HODKA</a>
                 {% endif %}
@@ -571,7 +571,7 @@
           </div> {% endcomment %}
           <div class="col-lg-6 p-lg-5 mt-4 mt-lg-0">
             <h2 class="mb-3 text-black" style="direction: rtl; text-align: right;">درباره ما</h2>
-            <p class="lead" style="direction: rtl; text-align: right;">{{exdata.aboutUsContent}}</p>
+            <p class="lead" style="direction: rtl; text-align: justify; font-family: 'BNazanin';">{{exdata.aboutUsContent}}</p>
             {% comment %} <div class="row mt-3">
               <div class="col-lg-6">
                 <ul class="ul-check primary list-unstyled">
@@ -765,11 +765,11 @@
 
     {% comment %} ! نظر مشتریان {% endcomment %}
     {% if statisfaction %}
-    <div class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+    <div class="site-section block-13" id="testimonials-section" style="background-color: #f1f1f1;" data-aos="fade">
       <div class="container">
         <div class="text-center mb-5">
           <div class="block-heading-1">
-            <span>نظر مشریان</span>
+            {% comment %} <span>نظر مشریان</span> {% endcomment %}
             <h2>رضایت ها</h2>
           </div>
         </div>
@@ -799,7 +799,7 @@
         <div class="row">
           <div class="col-12 text-center mb-5">
             <div class="block-heading-1">
-              <span>آخرین محصولات</span>
+              {% comment %} <span>آخرین محصولات</span> {% endcomment %}
               <h2>محصولات ما</h2>
             </div>
           </div>
